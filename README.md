@@ -1,2 +1,2 @@
 # TankMultiplayer
- Simple multiplayer game with mirror
+ Simple RTS multiplayer game with mirror
