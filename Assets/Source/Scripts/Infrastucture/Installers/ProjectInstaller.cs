@@ -6,6 +6,7 @@ namespace RTS.Infrastucture
     public class ProjectInstaller : MonoInstaller
     {
         [SerializeField] private CoroutineRunner coroutineRunner;
+
         public override void InstallBindings()
         {
             Container.Bind<CoroutineRunner>().
@@ -22,6 +23,10 @@ namespace RTS.Infrastucture
 
             Container.Bind<IConfigProvider>().
                 To<ConfigProvider>().
+                AsSingle();
+
+            Container.Bind<IAssetProvider>().
+                To<AssetProvider>().
                 AsSingle();
 
             Container.Bind<IGameFactory>().

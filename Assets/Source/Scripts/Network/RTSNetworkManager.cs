@@ -13,11 +13,10 @@ public class RTSNetworkManager : NetworkManager
         this.gameFactory = gameFactory;
     }
 
-    public override void OnServerAddPlayer(NetworkConnectionToClient conn)
+    public override async void OnServerAddPlayer(NetworkConnectionToClient conn)
     {
-        var player = gameFactory.CreatePlayer(GetStartPosition());
-        Debug.Log("create player");
-        // player.name = $"{playerPrefab.name} [connId={conn.connectionId}]";
-        // NetworkServer.AddPlayerForConnection(conn, player);
+        var player = await gameFactory.CreatePlayer(GetStartPosition());
+        player.name = $"{playerPrefab.name} [connId={conn.connectionId}]";
+        NetworkServer.AddPlayerForConnection(conn, player);
     }
 }
