@@ -12,7 +12,16 @@ namespace RTS.Infrastucture
                 FromComponentInHierarchy().
                 AsSingle();
 
+            BindServices();
+        }
+
+        private void BindServices()
+        {
             Container.Bind<SceneLoader>().
+                AsSingle();
+
+            Container.Bind<IConfigProvider>().
+                To<ConfigProvider>().
                 AsSingle();
         }
     }

@@ -134,8 +134,8 @@ GameObject:
   - component: {fileID: 1043966745}
   - component: {fileID: 1043966744}
   - component: {fileID: 1043966743}
-  - component: {fileID: 1043966742}
   - component: {fileID: 1043966741}
+  - component: {fileID: 1043966742}
   m_Layer: 0
   m_Name: Bootstrapper
   m_TagString: Untagged
@@ -193,7 +193,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1043966740}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8aab4c8111b7c411b9b92cf3dbc5bd4e, type: 3}
+  m_Script: {fileID: 11500000, guid: a717b080f1dd5db40881fc24a494f413, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
@@ -207,9 +207,9 @@ MonoBehaviour:
   networkAddress: localhost
   maxConnections: 100
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 0}
+  playerPrefab: {fileID: 2915661718943755235, guid: 4fd2f9fe73ac7c5429770e72c4980a8d, type: 3}
   autoCreatePlayer: 1
-  playerSpawnMethod: 0
+  playerSpawnMethod: 1
   spawnPrefabs: []
   timeInterpolationGui: 0
 --- !u!114 &1043966744
