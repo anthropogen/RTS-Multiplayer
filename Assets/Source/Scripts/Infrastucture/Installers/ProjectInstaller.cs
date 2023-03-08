@@ -23,6 +23,10 @@ namespace RTS.Infrastucture
             Container.Bind<IConfigProvider>().
                 To<ConfigProvider>().
                 AsSingle();
+
+            Container.Bind<IGameFactory>().
+                To<GameFactory>().
+                AsSingle();
         }
     }
 }
