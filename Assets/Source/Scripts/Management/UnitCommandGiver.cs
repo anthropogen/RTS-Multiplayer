@@ -9,8 +9,9 @@ namespace RTS.Management
         [SerializeField] private UnitSelector selector;
         private Camera cam;
 
-        private void Start()
+        public override void OnStartAuthority()
         {
+            base.OnStartAuthority();
             cam = Camera.main;
         }
 

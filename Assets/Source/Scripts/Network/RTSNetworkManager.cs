@@ -1,6 +1,5 @@
 using Mirror;
 using RTS.Infrastucture;
-using UnityEngine;
 using Zenject;
 
 public class RTSNetworkManager : NetworkManager
@@ -17,6 +16,6 @@ public class RTSNetworkManager : NetworkManager
     {
         var player = await gameFactory.CreatePlayer(GetStartPosition());
         player.name = $"{playerPrefab.name} [connId={conn.connectionId}]";
-        NetworkServer.AddPlayerForConnection(conn, player);
+        NetworkServer.AddPlayerForConnection(conn, player.gameObject);
     }
 }

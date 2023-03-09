@@ -129,6 +129,11 @@ namespace UniRx
             trigger.Dispose();
             canExecuteSubscription.Dispose();
         }
+
+        public void Subscribe(Func<object, object> value)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     /// <summary>

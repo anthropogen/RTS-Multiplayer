@@ -2,6 +2,7 @@ using Mirror;
 using RTS.Configs;
 using UnityEngine;
 using UnityEngine.Events;
+using UniRx;
 
 namespace RTS.Units
 {
@@ -9,9 +10,14 @@ namespace RTS.Units
     {
         [field: SerializeField] public UnitType UnitType { get; private set; }
         [field: SerializeField] public UnitMover UnitMover { get; private set; }
-
         public UnityEvent Selected;
         public UnityEvent Unselected;
+        public ReactiveCommand<Unit> UnitDestroyed = new ReactiveCommand<Unit>();
+
+        private void OnDestroy()
+        {
+            UnitDestroyed.Execute(this);
+        }
 
         #region Client
 
