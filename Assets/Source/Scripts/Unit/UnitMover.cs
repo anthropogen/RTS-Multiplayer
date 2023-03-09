@@ -1,9 +1,8 @@
 using Mirror;
-using RTS.Infrastucture;
+using RTS.Configs;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
-using Zenject;
 
 namespace RTS.Unit
 {
@@ -11,6 +10,13 @@ namespace RTS.Unit
     {
         [SerializeField] private NavMeshAgent agent;
         private Camera cam;
+
+        public void Construct(UnitConfig config)
+        {
+            agent.speed = config.MovementData.Speed;
+            agent.angularSpeed = config.MovementData.AngularSpeed;
+            agent.acceleration = config.MovementData.Acceleration;
+        }
 
         public override void OnStartAuthority()
         {

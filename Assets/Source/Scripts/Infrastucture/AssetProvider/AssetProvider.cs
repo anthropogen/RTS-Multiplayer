@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -10,11 +11,23 @@ namespace RTS.Infrastucture
     {
         private readonly Dictionary<string, AsyncOperationHandle> cashe = new Dictionary<string, AsyncOperationHandle>();
 
+        ~AssetProvider()
+        {
+            CleanUp();
+        }
+
         public async Task<GameObject> LoadAsset(string path)
         {
             if (cashe.TryGetValue(path, out var handle))
                 return handle.Result as GameObject;
             return await LoadWithCache(path);
+        }
+
+        public async Task<GameObject> LoadAsset(AssetReference asset)
+        {
+            if (cashe.TryGetValue(asset.AssetGUID, out var handle))
+                return handle.Result as GameObject;
+            return await LoadWithCache(asset.AssetGUID);
         }
 
         public void CleanUp()
@@ -33,6 +46,4 @@ namespace RTS.Infrastucture
             return await handle.Task;
         }
     }
-
-
 }
