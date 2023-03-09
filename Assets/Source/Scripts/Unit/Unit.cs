@@ -1,32 +1,34 @@
 using Mirror;
 using RTS.Configs;
-using RTS.Unit;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Unit : NetworkBehaviour
+namespace RTS.Units
 {
-    [field: SerializeField] public UnitType UnitType { get; private set; }
-    [field: SerializeField] public UnitMover UnitMover { get; private set; }
-
-    public UnityEvent Selected;
-    public UnityEvent Unselected;
-
-    #region Client
-
-    [Client]
-    public void Select()
+    public class Unit : NetworkBehaviour
     {
-        if (!isOwned) return;
-        Selected?.Invoke();
-    }
+        [field: SerializeField] public UnitType UnitType { get; private set; }
+        [field: SerializeField] public UnitMover UnitMover { get; private set; }
 
-    [Client]
-    public void Unselect()
-    {
-        if (!isOwned) return;
-        Unselected?.Invoke();
-    }
+        public UnityEvent Selected;
+        public UnityEvent Unselected;
 
-    #endregion
+        #region Client
+
+        [Client]
+        public void Select()
+        {
+            if (!isOwned) return;
+            Selected?.Invoke();
+        }
+
+        [Client]
+        public void Unselect()
+        {
+            if (!isOwned) return;
+            Unselected?.Invoke();
+        }
+
+        #endregion
+    }
 }

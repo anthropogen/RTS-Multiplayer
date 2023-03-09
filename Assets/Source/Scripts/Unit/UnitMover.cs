@@ -3,7 +3,7 @@ using RTS.Configs;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace RTS.Unit
+namespace RTS.Units
 {
     public class UnitMover : NetworkBehaviour
     {

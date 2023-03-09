@@ -2,27 +2,30 @@ using Mirror;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class UnitCommandGiver : NetworkBehaviour
+namespace RTS.Management
 {
-    [SerializeField] private UnitSelector selector;
-    private Camera cam;
-
-    private void Start()
+    public class UnitCommandGiver : NetworkBehaviour
     {
-        cam = Camera.main;
-    }
+        [SerializeField] private UnitSelector selector;
+        private Camera cam;
 
-    [ClientCallback]
-    private void Update()
-    {
-        if (Mouse.current.rightButton.wasPressedThisFrame)
+        private void Start()
         {
-            var ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
-            if (Physics.Raycast(ray, out RaycastHit hit, 100))
+            cam = Camera.main;
+        }
+
+        [ClientCallback]
+        private void Update()
+        {
+            if (Mouse.current.rightButton.wasPressedThisFrame)
             {
-                foreach (var unit in selector.SelectedUnits)
+                var ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
+                if (Physics.Raycast(ray, out RaycastHit hit, 100))
                 {
-                    unit.UnitMover.CmdMoveTo(hit.point);
+                    foreach (var unit in selector.SelectedUnits)
+                    {
+                        unit.UnitMover.CmdMoveTo(hit.point);
+                    }
                 }
             }
         }

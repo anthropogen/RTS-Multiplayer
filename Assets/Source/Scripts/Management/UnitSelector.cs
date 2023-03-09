@@ -2,60 +2,64 @@ using Mirror;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using RTS.Units;
 
-public class UnitSelector : NetworkBehaviour
+namespace RTS.Management
 {
-    [SerializeField] private LayerMask unitMask;
-    private readonly List<Unit> selectedUnits = new List<Unit>();
-    private Camera cam;
-    public IEnumerable<Unit> SelectedUnits => selectedUnits;
-
-    private void Start()
+    public class UnitSelector : NetworkBehaviour
     {
-        cam = Camera.main;
-    }
+        [SerializeField] private LayerMask unitMask;
+        private readonly List<Unit> selectedUnits = new List<Unit>();
+        private Camera cam;
+        public IEnumerable<Unit> SelectedUnits => selectedUnits;
 
-    [ClientCallback]
-    private void Update()
-    {
-        if (!isOwned) return;
-
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        private void Start()
         {
-            ClearSelectionUnits();
+            cam = Camera.main;
         }
-        else if (Mouse.current.leftButton.isPressed)
+
+        [ClientCallback]
+        private void Update()
         {
+            if (!isOwned) return;
 
-        }
-        else if (Mouse.current.leftButton.wasReleasedThisFrame)
-        {
-            ClearSelectionArea();
-        }
-    }
-
-    private void ClearSelectionUnits()
-    {
-        if (selectedUnits.Count == 0)
-            return;
-
-        foreach (var u in selectedUnits)
-            u.Unselect();
-
-        selectedUnits.Clear();
-    }
-
-    private void ClearSelectionArea()
-    {
-        var ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
-        if (Physics.Raycast(ray, out var hit, 100, unitMask))
-        {
-            if (hit.collider.TryGetComponent(out Unit unit))
+            if (Mouse.current.leftButton.wasPressedThisFrame)
             {
-                selectedUnits.Add(unit);
+                ClearSelectionUnits();
+            }
+            else if (Mouse.current.leftButton.isPressed)
+            {
+
+            }
+            else if (Mouse.current.leftButton.wasReleasedThisFrame)
+            {
+                ClearSelectionArea();
             }
         }
-        foreach (var u in selectedUnits)
-            u.Select();
+
+        private void ClearSelectionUnits()
+        {
+            if (selectedUnits.Count == 0)
+                return;
+
+            foreach (var u in selectedUnits)
+                u.Unselect();
+
+            selectedUnits.Clear();
+        }
+
+        private void ClearSelectionArea()
+        {
+            var ray = cam.ScreenPointToRay(Mouse.current.position.ReadValue());
+            if (Physics.Raycast(ray, out var hit, 100, unitMask))
+            {
+                if (hit.collider.TryGetComponent(out Unit unit))
+                {
+                    selectedUnits.Add(unit);
+                }
+            }
+            foreach (var u in selectedUnits)
+                u.Select();
+        }
     }
 }

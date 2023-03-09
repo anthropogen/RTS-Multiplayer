@@ -1,5 +1,5 @@
 ﻿using RTS.Configs;
-using RTS.Unit;
+using RTS.Units;
 using System.Threading.Tasks;
 using UnityEngine;
 using Zenject;
