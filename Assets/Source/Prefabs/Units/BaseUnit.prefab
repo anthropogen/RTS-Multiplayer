@@ -168,6 +168,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   <UnitType>k__BackingField: 0
+  <UnitMover>k__BackingField: {fileID: 3943186942586320132}
   Selected:
     m_PersistentCalls:
       m_Calls: []

@@ -8,6 +8,7 @@ public class UnitSelector : NetworkBehaviour
     [SerializeField] private LayerMask unitMask;
     private readonly List<Unit> selectedUnits = new List<Unit>();
     private Camera cam;
+    public IEnumerable<Unit> SelectedUnits => selectedUnits;
 
     private void Start()
     {
