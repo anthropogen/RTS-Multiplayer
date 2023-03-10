@@ -69,7 +69,6 @@ MonoBehaviour:
   syncInterval: 0.1
   spawnKey: 33
   unitTemplate: {fileID: 7388716984332351353, guid: 100abb0186112124583825af75a40601, type: 3}
-  sphereTemplate: {fileID: 2381392777130076123, guid: 9d0d758978e3c1a41b158c7c9368449b, type: 3}
 --- !u!114 &-6489214279183327205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,6 +87,7 @@ MonoBehaviour:
   unitMask:
     serializedVersion: 2
     m_Bits: 64
+  player: {fileID: -2750109227113007229}
 --- !u!114 &-7506255846119497553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,3 +120,4 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   unitSpawner: {fileID: 8831136326298947790}
+  units: []

@@ -1,5 +1,9 @@
 using Mirror;
 using RTS.Infrastucture;
+using RTS.Management;
+using RTS.UI;
+using System.Threading.Tasks;
+using UnityEngine;
 using Zenject;
 
 public class RTSNetworkManager : NetworkManager
@@ -14,8 +18,16 @@ public class RTSNetworkManager : NetworkManager
 
     public override async void OnServerAddPlayer(NetworkConnectionToClient conn)
     {
-        var player = await gameFactory.CreatePlayer(GetStartPosition());
+        GameObject player = await CreatePlayer();
         player.name = $"{playerPrefab.name} [connId={conn.connectionId}]";
         NetworkServer.AddPlayerForConnection(conn, player.gameObject);
+    }
+
+    private async Task<GameObject> CreatePlayer()
+    {
+        var player = await gameFactory.CreatePlayer(GetStartPosition());
+        var playerCanvas = await gameFactory.CreatePlayerCanvas();
+        player.GetComponent<UnitSelector>().Construct(playerCanvas.GetComponentInChildren<SelectionAreaView>());
+        return player;
     }
 }

@@ -11,6 +11,7 @@ namespace RTS.Management
         [SerializeField] private UnitSpawner unitSpawner;
         [SerializeField] private List<Unit> units = new List<Unit>();
         private readonly CompositeDisposable disposable = new CompositeDisposable();
+        public IEnumerable<Unit> Units => units;
 
         private void Start()
         {

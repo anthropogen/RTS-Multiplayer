@@ -25,6 +25,12 @@ namespace RTS.Infrastucture
             return diContainer.InstantiatePrefab(prefab, spawnPoint.position, Quaternion.identity, spawnPoint);
         }
 
+        public async Task<GameObject> CreatePlayerCanvas()
+        {
+            var prefab = await assetProvider.LoadAsset(AssetPath.PlayerCanvas);
+            return diContainer.InstantiatePrefab(prefab);
+        }
+
         public async Task<GameObject> CreateUnit(UnitType type, Vector3 spawnPoint, Transform parent)
         {
             var config = configProvider.GetUnitConfig(type);
