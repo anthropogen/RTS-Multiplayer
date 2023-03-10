@@ -1,7 +1,6 @@
 using Mirror;
 using RTS.UI;
 using RTS.Units;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,7 +11,7 @@ namespace RTS.Management
     {
         [SerializeField] private LayerMask unitMask;
         [SerializeField] private Player player;
-        private readonly List<Unit> selectedUnits = new List<Unit>();
+        private readonly HashSet<Unit> selectedUnits = new HashSet<Unit>();
         private SelectionAreaView selectionArea;
         private Camera cam;
         public IEnumerable<Unit> SelectedUnits => selectedUnits;
@@ -35,6 +34,9 @@ namespace RTS.Management
 
             if (Mouse.current.leftButton.wasPressedThisFrame)
             {
+                if (!Keyboard.current[Key.LeftShift].isPressed)
+                    ClearSelectionUnits();
+
                 StartSelectionArea();
             }
             else if (Mouse.current.leftButton.isPressed)
@@ -55,7 +57,6 @@ namespace RTS.Management
 
         private void StartSelectionArea()
         {
-            ClearSelectionUnits();
             selectionArea.StartSelect(Mouse.current.position.ReadValue());
             selectionArea.UpdateSelect(Mouse.current.position.ReadValue());
         }

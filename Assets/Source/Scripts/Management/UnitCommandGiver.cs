@@ -25,7 +25,7 @@ namespace RTS.Management
                 {
                     foreach (var unit in selector.SelectedUnits)
                     {
-                        unit.UnitMover.CmdMoveTo(hit.point);
+                        unit.unitMover.CmdMoveTo(hit.point);
                     }
                 }
             }

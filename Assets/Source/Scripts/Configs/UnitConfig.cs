@@ -8,6 +8,7 @@ namespace RTS.Configs
     {
         [field: SerializeField] public UnitType UnitType { get; private set; }
         [field: SerializeField] public MovementUnitData MovementData { get; private set; }
+        [field: SerializeField] public DamageConfig DamageConfig { get; private set; }
         [field: SerializeField] public AssetReferenceGameObject UnitTemplate { get; private set; }
     }
 }
